@@ -1,6 +1,8 @@
 const item = document.getElementById("input-item");
 const botaoSalvarItem = document.getElementById("adicionar-item");
 const listaDeCompras = document.getElementById("lista-de-compras");
+let contador = 0;
+
 
 botaoSalvarItem.addEventListener("click", adicionarItem);
 
@@ -12,6 +14,38 @@ function adicionarItem(evento) {
     containerItemLista.classList.add("lista-item-container"); // acessa a lista de classes da (div) e adiciona a classe da div
 
     const containerNomeDoItem = document.createElement("div"); // cria a div container-nome-compra
+
+    const containerCheckbox = document.createElement("div");
+    containerCheckbox.classList.add("container-checkbox");
+
+    const checkboxInput = document.createElement("input");
+    checkboxInput.type = "checkbox";
+    checkboxInput.classList.add("input-checkbox");
+    checkboxInput.id = "checkbox-" + contador++
+
+    const checkboxLabel = document.createElement("label");
+    checkboxLabel.setAttribute("for", checkboxInput.id);
+
+    checkboxLabel.addEventListener("click", function (evento) {
+        const checkboxInput = evento.currentTarget.querySelector(".input-checkbox");
+        const checkboxCustomizado =  evento.currentTarget.querySelector(".checkbox-customizado");
+
+        if(checkboxInput.checked) {
+            checkboxCustomizado.classList.add("checked");
+        } else {
+            checkboxCustomizado.classList.remove("checked");
+        }
+    })
+
+    const checkboxCustomizado = document.createElement("div");
+    checkboxCustomizado.classList.add("checkbox-customizado");
+
+    checkboxLabel.appendChild(checkboxInput);
+    checkboxLabel.appendChild(checkboxCustomizado);
+
+    containerCheckbox.appendChild(checkboxLabel);
+    containerNomeDoItem.appendChild(containerCheckbox);
+
     const nomeDoItem = document.createElement("p"); //cria o paragrafor onde vai ficar o nome do item 
     nomeDoItem.innerText = item.value; // inserindo no paragrafo o valor digitado pelo usuário no input
     containerNomeDoItem.appendChild(nomeDoItem); // coloca paragrafo(p) dentro do container nome do item
@@ -26,14 +60,14 @@ function adicionarItem(evento) {
 
     botaoRemover.appendChild(imagemRemover);
     containerBotoes.appendChild(botaoRemover);
-
+    
     const botaoEditar = document.createElement("button"); //cria o (button) dentro da div
     botaoEditar.classList.add("item-lista-button"); //adiciona a classe (botao-acao)
 
     const imagemEditar = document.createElement("img"); // cria a tag (img)
     imagemEditar.src = "img/edit.svg"; //adiciona a imagem que a tag (img) vai receber
     imagemEditar.alt = "Editar"; //texto alternativo
-
+   
     botaoEditar.appendChild(imagemEditar);
     containerBotoes.appendChild(botaoEditar);
 
