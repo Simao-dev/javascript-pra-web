@@ -1,6 +1,7 @@
 const item = document.getElementById("input-item");
 const botaoSalvarItem = document.getElementById("adicionar-item");
 const listaDeCompras = document.getElementById("lista-de-compras");
+const listaComprados = document.getElementById("lista-comprados")
 let contador = 0;
 
 
@@ -29,11 +30,16 @@ function adicionarItem(evento) {
     checkboxLabel.addEventListener("click", function (evento) {
         const checkboxInput = evento.currentTarget.querySelector(".input-checkbox");
         const checkboxCustomizado =  evento.currentTarget.querySelector(".checkbox-customizado");
+        const itemTitulo = evento.currentTarget.closest("li").querySelector("#item-titulo")
 
         if(checkboxInput.checked) {
             checkboxCustomizado.classList.add("checked");
+            itemTitulo.style.textDecoration = "line-through";
+            listaComprados.appendChild(itemDaLista);
         } else {
             checkboxCustomizado.classList.remove("checked");
+            itemTitulo.style.textDecoration = "none";
+            listaDeCompras.appendChild(itemDaLista);
         }
     })
 
@@ -46,7 +52,8 @@ function adicionarItem(evento) {
     containerCheckbox.appendChild(checkboxLabel);
     containerNomeDoItem.appendChild(containerCheckbox);
 
-    const nomeDoItem = document.createElement("p"); //cria o paragrafor onde vai ficar o nome do item 
+    const nomeDoItem = document.createElement("p"); //cria o paragrafor onde vai ficar o nome do item
+    nomeDoItem.id = "item-titulo"; 
     nomeDoItem.innerText = item.value; // inserindo no paragrafo o valor digitado pelo usuário no input
     containerNomeDoItem.appendChild(nomeDoItem); // coloca paragrafo(p) dentro do container nome do item
 
@@ -71,11 +78,16 @@ function adicionarItem(evento) {
     botaoEditar.appendChild(imagemEditar);
     containerBotoes.appendChild(botaoEditar);
 
-    
-
     containerItemLista.appendChild(containerNomeDoItem)
     containerItemLista.appendChild(containerBotoes)
+
+    const itemData = document.createElement("p");
+    itemData.innerText = `${new Date().toLocaleDateString("pt-BR", {weekday: "long" })} (${new Date().toLocaleDateString()}) às ${new Date().toLocaleTimeString("pt-BR", {hour: "numeric", minute: "numeric"})}`;
+    itemData.classList.add("texto-data");
+
+    
     itemDaLista.appendChild(containerItemLista); //coloca a (div) dentro do (li)lista
+    itemDaLista.appendChild(itemData)
     listaDeCompras.appendChild(itemDaLista)
 
 }
