@@ -1,9 +1,10 @@
 import { verificarListaComprados } from "./verificarListaComprados.js";
-import { listaDeCompras } from "./adcionarItem.js";
+import { listaDeCompras } from "./adcionarItem.js";3
+import { excluirItem } from "./excluirItem.js";
+import { EditarItem } from "./editarItem.js";
 
 const listaComprados = document.getElementById("lista-comprados")
 let contador = 0;
-
 
 export function criarItemDaLista(item) {
     const itemDaLista = document.createElement("li"); //cria a li que vai conter as listas de itens
@@ -63,6 +64,10 @@ export function criarItemDaLista(item) {
     imagemRemover.src = "img/delete.svg"; //adiciona a imagem que a tag (img) vai receber
     imagemRemover.alt = "Remover"; //texto alternativo
 
+    botaoRemover.addEventListener("click", function() {
+        excluirItem(itemDaLista)
+    })
+
     botaoRemover.appendChild(imagemRemover);
     containerBotoes.appendChild(botaoRemover);
     
@@ -72,6 +77,10 @@ export function criarItemDaLista(item) {
     const imagemEditar = document.createElement("img"); // cria a tag (img)
     imagemEditar.src = "img/edit.svg"; //adiciona a imagem que a tag (img) vai receber
     imagemEditar.alt = "Editar"; //texto alternativo
+
+    botaoEditar.addEventListener("click", function(){
+        EditarItem(itemDaLista)
+    })
    
     botaoEditar.appendChild(imagemEditar);
     containerBotoes.appendChild(botaoEditar);
