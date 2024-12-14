@@ -3,7 +3,7 @@ const mensagemListaVazia = document.getElementById("mensagem-lista-vazia");
 
 export function veficarListaVazia(lista){
     
-    if (lista.childElementCount === 0){
+    if (lista.querySelectorAll("li").length === 0){
         mensagemListaVazia.style.display = "block";
     
     }else {

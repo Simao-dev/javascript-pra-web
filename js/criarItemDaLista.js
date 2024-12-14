@@ -2,6 +2,7 @@ import { verificarListaComprados } from "./verificarListaComprados.js";
 import { listaDeCompras } from "./adcionarItem.js";3
 import { excluirItem } from "./excluirItem.js";
 import { EditarItem } from "./editarItem.js";
+import { gerarDiaDaSemana } from "./gerarDiaDaSemana.js";
 
 const listaComprados = document.getElementById("lista-comprados")
 let contador = 0;
@@ -89,7 +90,7 @@ export function criarItemDaLista(item) {
     containerItemLista.appendChild(containerBotoes)
 
     const itemData = document.createElement("p");
-    itemData.innerText = `${new Date().toLocaleDateString("pt-BR", {weekday: "long" })} (${new Date().toLocaleDateString()}) às ${new Date().toLocaleTimeString("pt-BR", {hour: "numeric", minute: "numeric"})}`;
+    itemData.textContent = gerarDiaDaSemana();
     itemData.classList.add("texto-data");
 
     
