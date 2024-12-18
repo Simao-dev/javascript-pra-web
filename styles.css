@@ -142,9 +142,32 @@ ul {
     transform: rotate(-140deg);
 }
 
+.container-alterar {
+    display: none;
+    position: absolute;
+    border: 1px solid var(--cor-primaria);
+    background-color: seashell;
+    border-radius: 8px;
+    width: 200px;
+    height: 100px;
+}
+
+.input-alterar {
+    padding: 10px 0 10px 0;
+}
+.input-alterar form input {
+    border-radius: 10px;
+    padding: 7px 7px;
+}
 .texto-data {
     font-size: 12px;
     line-height: 15px;
+}
+
+.botoes-formulario-alterar form { 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .item-lista-button {
